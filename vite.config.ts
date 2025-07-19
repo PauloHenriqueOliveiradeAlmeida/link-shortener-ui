@@ -25,9 +25,15 @@ export default defineConfig({
 		],
 		coverage: {
 			provider: 'v8',
-			reporter: ['html'],
+			reporter: ['text', 'html'],
 			include: ["src/**/*.{js,ts,svelte}"],
-			exclude: ["**/*.stories.svelte"]
+			exclude: ["**/*.stories.svelte"],
+			watermarks: {
+				lines: [70, 80],
+				statements: [70, 80],
+				branches: [70, 80],
+				functions: [70, 80]
+			}
 		}
 	}
 });
