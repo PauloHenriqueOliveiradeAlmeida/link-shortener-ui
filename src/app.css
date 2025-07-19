@@ -1,3 +1,11 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+
+@theme inline {
+  --color-primary: #1646D5;
+  --color-caution: #E3231C;
+  --color-light: #F0F0F0;
+  --color-dark: #1A1A1A;
+  --color-light-gray: #606060;
+}
