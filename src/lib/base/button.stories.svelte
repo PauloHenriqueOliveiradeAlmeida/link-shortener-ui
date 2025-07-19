@@ -10,7 +10,7 @@
 			label: { control: 'text', description: 'Button label', defaultValue: 'Button' },
 			color: {
 				control: 'radio',
-				options: ['primary', 'dark', 'caution'],
+				options: ['primary', 'caution'],
 				defaultValue: 'primary'
 			},
 			variant: { control: 'radio', options: ['filled', 'outlined'], defaultValue: 'filled' }
