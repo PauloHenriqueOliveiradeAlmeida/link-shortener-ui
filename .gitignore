@@ -25,3 +25,9 @@ vite.config.ts.timestamp-*
 
 *storybook.log
 storybook-static
+
+# Tests
+coverage
+
+# Locks
+yarn.lock

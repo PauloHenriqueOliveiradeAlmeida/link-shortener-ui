@@ -1,35 +1,39 @@
 import tailwindcss from '@tailwindcss/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
+import { svelteTesting } from '@testing-library/svelte/vite'
 
 export default defineConfig({
-	plugins: [tailwindcss(), sveltekit()],
+	plugins: [tailwindcss(), sveltekit(), svelteTesting()],
 	test: {
 		projects: [
 			{
 				extends: './vite.config.ts',
 				test: {
 					name: 'client',
-					environment: 'browser',
+					environment: 'jsdom',
 					browser: {
-						enabled: true,
+						enabled: false,
 						provider: 'playwright',
 						instances: [{ browser: 'chromium' }]
 					},
-					include: ['src/**/*.svelte.{test,spec}.{js,ts}'],
-					exclude: ['src/lib/server/**'],
-					setupFiles: ['./vitest-setup-client.ts']
-				}
-			},
-			{
-				extends: './vite.config.ts',
-				test: {
-					name: 'server',
-					environment: 'node',
 					include: ['src/**/*.{test,spec}.{js,ts}'],
-					exclude: ['src/**/*.svelte.{test,spec}.{js,ts}']
+					exclude: ['src/lib/server/**'],
+					setupFiles: ['./vitest-setup-client.ts'],
 				}
 			}
-		]
+		],
+		coverage: {
+			provider: 'v8',
+			reporter: ['text', 'html'],
+			include: ["src/**/*.{js,ts,svelte}"],
+			exclude: ["**/*.stories.svelte"],
+			watermarks: {
+				lines: [70, 80],
+				statements: [70, 80],
+				branches: [70, 80],
+				functions: [70, 80]
+			}
+		}
 	}
 });
